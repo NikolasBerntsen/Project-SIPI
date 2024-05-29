@@ -24,56 +24,63 @@ class Delizable extends StatelessWidget {
             icon: Icons.library_books,
             text: 'Popular',
             onTap: () {
-              // Navegar a la pantalla Popular
+              //Navigator.pushReplacementNamed(context, "/");
             },
           ),
           DrawerItem(
             icon: Icons.search,
             text: 'Buscar',
             onTap: () {
-              // Navegar a la pantalla Buscar
+              //Navigator.pushReplacementNamed(context, "/Busqueda");
             },
           ),
           DrawerItem(
             icon: Icons.person,
             text: 'Perfil',
             onTap: () {
-              // Navegar a la pantalla Perfil
+              //Navigator.pushReplacementNamed(context, "/Perfil");
             },
           ),
           DrawerItem(
             icon: Icons.favorite,
             text: 'Favoritos',
             onTap: () {
-              // Navegar a la pantalla Favoritos
+              //Navigator.pushReplacementNamed(context, "/Favoritos");
             },
           ),
           DrawerItem(
             icon: Icons.rate_review,
             text: 'Reseñas',
             onTap: () {
-              // Navegar a la pantalla Reseñas
+              //Navigator.pushReplacementNamed(context, "/Reseñas");
             },
           ),
           DrawerItem(
             icon: Icons.pending_actions,
             text: 'Solicitudes',
             onTap: () {
-              // Navegar a la pantalla Solicitudes
+              Navigator.pushReplacementNamed(context, "/solicitudes");
             },
           ),
           DrawerItem(
             icon: Icons.settings,
             text: 'Configuración',
             onTap: () {
-              // Navegar a la pantalla Configuración
+              //Navigator.pushReplacementNamed(context, "/configuracion");
+            },
+          ),
+          DrawerItem(
+            icon: Icons.tag_faces_sharp,
+            text: 'Suscripciones',
+            onTap: () {
+              Navigator.pushReplacementNamed(context, "/suscripciones");
             },
           ),
           DrawerItem(
             icon: Icons.logout,
             text: 'Cerrar sesión',
             onTap: () {
-              // Realizar acción de cerrar sesión
+              //Navigator.pushReplacementNamed(context, "/Login");
             },
           ),
         ],

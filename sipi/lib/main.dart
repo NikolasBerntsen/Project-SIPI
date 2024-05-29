@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sipi/gui/deslizable.dart';
 import 'package:sipi/gui/principal.dart';
+import 'package:sipi/gui/solicitudes.dart';
+import 'package:sipi/gui/suscripciones.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,6 +14,13 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: "/home",
+      routes : {
+        "/home": (contex)=> Principal(),
+        "/suscripciones": (contex)=> Suscripciones(),
+        "/solicitudes": (contex)=> Solicitudes(),
+      },
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.blueGrey[900],
@@ -20,11 +29,7 @@ class MainApp extends StatelessWidget {
           secondary: Colors.blueAccent, 
         ),
       ),
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Principal(),
-        drawer: Delizable()
-      ),
+      home: Principal(),
     );
   }
 }
