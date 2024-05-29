@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 
-class LoginScreen extends StatelessWidget {
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,20 +36,17 @@ class LoginScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Add login logic here
-              },
               child: Text('Login'),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, "/home");
+              },
             ),
             SizedBox(height: 10),
             TextButton(
-              onPressed: () {
-                /*Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CreateAccountScreen()),
-                );*/
-              },
               child: Text('Create an account'),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, "/registrarse");
+              },
             ),
           ],
         ),

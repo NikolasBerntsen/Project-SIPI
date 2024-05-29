@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CreateAccountScreen extends StatefulWidget {
+class Registrarse extends StatefulWidget {
   @override
-  _CreateAccountScreenState createState() => _CreateAccountScreenState();
+  _RegistrarseState createState() => _RegistrarseState();
 }
 
-class _CreateAccountScreenState extends State<CreateAccountScreen> {
+class _RegistrarseState extends State<Registrarse> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +77,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add account creation logic here
+                Navigator.pushReplacementNamed(context, "/login");
               },
               child: Text('Create Account'),
             ),

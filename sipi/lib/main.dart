@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sipi/gui/LogIn.dart';
+import 'package:sipi/gui/Registrarse.dart';
 import 'package:sipi/gui/deslizable.dart';
 import 'package:sipi/gui/principal.dart';
 import 'package:sipi/gui/profile_page.dart';
@@ -16,13 +18,15 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: "/home",
+      initialRoute: "/login",
       routes : {
         "/home": (contex)=> Principal(),
         "/suscripciones": (contex)=> Suscripciones(),
         "/solicitudes": (contex)=> Solicitudes(),
         "/perfil": (contex)=> ProfilePage(),
         "/busqueda": (contex)=> SearchPage(),
+        "/registrarse": (contex)=> Registrarse(),
+        "/login": (contex)=> Login(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -33,7 +37,7 @@ class MainApp extends StatelessWidget {
           secondary: Colors.blueAccent, 
         ),
       ),
-      home: Principal(),
+      home: Login(),
     );
   }
 }
