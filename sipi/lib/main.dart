@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'gui/profile_page.dart'; 
-import 'gui/search_page.dart';
-
-
-
+import 'package:sipi/gui/deslizable.dart';
+import 'package:sipi/gui/principal.dart';
+import 'package:sipi/gui/solicitudes.dart';
+import 'package:sipi/gui/suscripciones.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Profile Demo',
+      initialRoute: "/home",
+      routes : {
+        "/home": (contex)=> Principal(),
+        "/suscripciones": (contex)=> Suscripciones(),
+        "/solicitudes": (contex)=> Solicitudes(),
+      },
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.blueGrey[900],
@@ -22,12 +29,7 @@ class MyApp extends StatelessWidget {
           secondary: Colors.blueAccent, 
         ),
       ),
-  
-        home: ProfilePage(), 
-    //  home: SearchPage(), 
-
+      home: Principal(),
     );
   }
 }
-
-
