@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sipi/gui/LogIn.dart';
+import 'package:sipi/gui/Registrarse.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp( MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hola mundo!'),
-        ),
-      ),
-    );
+    return MaterialApp();
   }
 }

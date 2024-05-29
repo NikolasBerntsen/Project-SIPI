@@ -1,25 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Game Catalog',
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.black,
-        ),
-        scaffoldBackgroundColor: Colors.black,
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.white),
-        ),
-      ),
-      home: LoginScreen(),
-    );
-  }
-}
+
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -63,10 +44,10 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 10),
             TextButton(
               onPressed: () {
-                Navigator.push(
+                /*Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => CreateAccountScreen()),
-                );
+                );*/
               },
               child: Text('Create an account'),
             ),
