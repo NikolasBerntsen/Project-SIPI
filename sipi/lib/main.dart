@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
+import 'gui/profile_page.dart'; 
+import 'gui/search_page.dart';
+
+
+
 
 void main() {
-  runApp(const MainApp());
+  runApp(MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hola mundo!'),
+    return MaterialApp(
+      title: 'Profile Demo',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.blueGrey[900],
+        scaffoldBackgroundColor: Colors.blueGrey[900],
+        colorScheme: ColorScheme.dark(
+          secondary: Colors.blueAccent, 
         ),
       ),
+  
+        home: ProfilePage(), 
+    //  home: SearchPage(), 
+
     );
   }
 }
+
+
