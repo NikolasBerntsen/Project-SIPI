@@ -24,21 +24,21 @@ class Delizable extends StatelessWidget {
             icon: Icons.library_books,
             text: 'Popular',
             onTap: () {
-              //Navigator.pushReplacementNamed(context, "/");
+              Navigator.pushReplacementNamed(context, "/home");
             },
           ),
           DrawerItem(
             icon: Icons.search,
             text: 'Buscar',
             onTap: () {
-              //Navigator.pushReplacementNamed(context, "/Busqueda");
+              Navigator.pushReplacementNamed(context, "/busqueda");
             },
           ),
           DrawerItem(
             icon: Icons.person,
             text: 'Perfil',
             onTap: () {
-              //Navigator.pushReplacementNamed(context, "/Perfil");
+              Navigator.pushReplacementNamed(context, "/perfil");
             },
           ),
           DrawerItem(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sipi/gui/deslizable.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text('Perfil'),
       ),
+      drawer: Delizable(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
         child: Column(

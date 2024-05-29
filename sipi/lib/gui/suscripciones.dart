@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sipi/gui/deslizable.dart';
 
 class Suscripciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Delizable(),
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sipi/gui/deslizable.dart';
 import 'package:sipi/gui/principal.dart';
+import 'package:sipi/gui/profile_page.dart';
+import 'package:sipi/gui/search_page.dart';
 import 'package:sipi/gui/solicitudes.dart';
 import 'package:sipi/gui/suscripciones.dart';
 
@@ -19,6 +21,8 @@ class MainApp extends StatelessWidget {
         "/home": (contex)=> Principal(),
         "/suscripciones": (contex)=> Suscripciones(),
         "/solicitudes": (contex)=> Solicitudes(),
+        "/perfil": (contex)=> ProfilePage(),
+        "/busqueda": (contex)=> SearchPage(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

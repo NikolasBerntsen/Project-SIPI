@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sipi/gui/deslizable.dart';
 
 class Solicitudes extends StatelessWidget {
   const Solicitudes({super.key});
@@ -6,6 +7,7 @@ class Solicitudes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Delizable(),
       appBar: AppBar(
         title: Text('Solicitudes'),
       ),

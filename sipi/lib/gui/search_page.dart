@@ -1,6 +1,7 @@
 // lib/gui/search_page.dart
 
 import 'package:flutter/material.dart';
+import 'package:sipi/gui/deslizable.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Delizable(),
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[700],
         title: TextField(
