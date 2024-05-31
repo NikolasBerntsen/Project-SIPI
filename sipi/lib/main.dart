@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sipi/gui/LogIn.dart';
 import 'package:sipi/gui/Registrarse.dart';
+import 'package:sipi/gui/cargar_juego.dart';
 import 'package:sipi/gui/deslizable.dart';
+import 'package:sipi/gui/detalles_juego.dart';
 import 'package:sipi/gui/principal.dart';
 import 'package:sipi/gui/profile_page.dart';
 import 'package:sipi/gui/search_page.dart';
@@ -27,6 +29,8 @@ class MainApp extends StatelessWidget {
         "/busqueda": (contex)=> SearchPage(),
         "/registrarse": (contex)=> Registrarse(),
         "/login": (contex)=> Login(),
+        "/cargarJuego": (contex)=> CargarJuego(),
+        "/detallesJuego": (contex)=> DetallesJuego(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

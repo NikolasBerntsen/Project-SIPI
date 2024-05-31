@@ -4,26 +4,26 @@ import 'package:sipi/gui/deslizable.dart';
 class Principal extends StatelessWidget {
   Principal({super.key});
 
-  String JUEGO_1 = "ScreenCheat";
-  String JUEGO_1_URL =
+  final String JUEGO_1 = "ScreenCheat";
+  final String JUEGO_1_URL =
       "https://images.igdb.com/igdb/image/upload/t_cover_big/fdhebb99wjlrxlwuapwo.jpg";
-  String JUEGO_2 = "Friday Nigth Funky";
-  String JUEGO_2_URL =
+  final String JUEGO_2 = "Friday Nigth Funky";
+  final String JUEGO_2_URL =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGuDKZVRaL0XzyRnDjfWlnTJS9JC3pHkROYipmVrcjtQ&s";
-  String JUEGO_3 = "Five Nigth ar Freddys";
-  String JUEGO_3_URL =
+  final String JUEGO_3 = "Five Nigth ar Freddys";
+  final String JUEGO_3_URL =
       "https://musicart.xboxlive.com/7/19f76700-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080";
-  String JUEGO_4 = "Celeste";
-  String JUEGO_4_URL =
+  final String JUEGO_4 = "Celeste";
+  final String JUEGO_4_URL =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLn4vqfLf2rxH4wp9x-V2rQpzJUVpVM2NdmwMHUB0c-g&s";
-  String JUEGO_5 = "Pizza Tower";
-  String JUEGO_5_URL =
+  final String JUEGO_5 = "Pizza Tower";
+  final String JUEGO_5_URL =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIsg_GP3iEAKvt2ThjgmV6u4yH5Vb3LB0fHX2Pnukb8Q&s";
-  String JUEGO_6 = "Pinneaple On Pizza";
-  String JUEGO_6_URL =
+  final String JUEGO_6 = "Pinneaple On Pizza";
+  final String JUEGO_6_URL =
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaexU4jLHzErXwvxWGrGUH1sV37q-zBTCO8b2FMEyzsA&s";
-  String JUEGO_7 = "Speed Runners";
-  String JUEGO_7_URL =
+  final String JUEGO_7 = "Speed Runners";
+  final String JUEGO_7_URL =
       "https://store-images.s-microsoft.com/image/apps.50634.66726508910677917.a577adb2-6c73-4149-92ac-c3807d2d15cd.e78c4c54-33e7-47b8-bcc8-fa77e3055f41?q=90&w=177&h=265";
 
   @override
@@ -111,18 +111,23 @@ class GameCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Image.network(
-            game.imagePath,
-            width: 100,
-            height: 150,
-            fit: BoxFit.cover,
-          ),
-          SizedBox(height: 8),
-          Text(game.title, style: TextStyle(fontSize: 14)),
-        ],
-      ),
+      child: InkWell(
+        onTap: (){
+          Navigator.pushNamed(context, "/detallesJuego");
+        },
+        child: Column(
+          children: [
+            Image.network(
+              game.imagePath,
+              width: 100,
+              height: 150,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 8),
+            Text(game.title, style: TextStyle(fontSize: 14)),
+          ],
+        ),
+      )
     );
   }
 }

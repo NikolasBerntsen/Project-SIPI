@@ -31,14 +31,14 @@ class Delizable extends StatelessWidget {
             icon: Icons.search,
             text: 'Buscar',
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/busqueda");
+              Navigator.pushNamed(context, "/busqueda");
             },
           ),
           DrawerItem(
             icon: Icons.person,
             text: 'Perfil',
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/perfil");
+              Navigator.pushNamed(context, "/perfil");
             },
           ),
           DrawerItem(
@@ -59,7 +59,7 @@ class Delizable extends StatelessWidget {
             icon: Icons.pending_actions,
             text: 'Solicitudes',
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/solicitudes");
+              Navigator.pushNamed(context, "/solicitudes");
             },
           ),
           DrawerItem(
@@ -73,7 +73,7 @@ class Delizable extends StatelessWidget {
             icon: Icons.tag_faces_sharp,
             text: 'Suscripciones',
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/suscripciones");
+              Navigator.pushNamed(context, "/suscripciones");
             },
           ),
           DrawerItem(
@@ -81,6 +81,13 @@ class Delizable extends StatelessWidget {
             text: 'Cerrar sesión',
             onTap: () {
               //Navigator.pushReplacementNamed(context, "/Login");
+            },
+          ),
+          DrawerItem(
+            icon: Icons.upload,
+            text: 'Publicar juego',
+            onTap: () {
+              Navigator.pushNamed(context, "/cargarJuego");
             },
           ),
         ],
