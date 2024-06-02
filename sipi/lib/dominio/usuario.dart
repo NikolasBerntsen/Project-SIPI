@@ -26,11 +26,15 @@ class Usuario {
   bool esDesarrollador() => desarrollador;
   bool esCritico() => critico;
   bool esModerador() => moderador;
+
   void agregarTag(String tag) {
-    // Implementación de agregarTag
-  }
+    if (!notificaciones.contains(tag)) {
+      notificaciones.add(tag);
+    }
+  } //primero verifica si el tag esta o no, si no esta lo agrega
 
   void eliminarTag(String tag) {
-    // Implementación de eliminarTag
+    notificaciones.remove(tag);
   }
-}
+} //elimina el tag de la lista de notificaciones si esta presente
+
