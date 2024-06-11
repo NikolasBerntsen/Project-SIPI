@@ -21,18 +21,6 @@ class JuegosEnPantalla {
     print('Juego agregado: ${juego.nombreJuego}');
   }
 
-  // Método para actualizar un juego en la lista
-  void actualizarJuego(int idJuego, Juego juegoActualizado) {
-    for (int i = 0; i < juegos.length; i++) {
-      if (juegos[i].idJuego == idJuego) {
-        juegos[i] = juegoActualizado;
-        print('Juego actualizado: ${juegoActualizado.nombreJuego}');
-        return;
-      }
-    }
-    print('Juego con ID $idJuego no encontrado.');
-  }
-
   // Método para eliminar un juego de la lista
   void eliminarJuego(int idJuego) {
     juegos.removeWhere((juego) => juego.idJuego == idJuego);
