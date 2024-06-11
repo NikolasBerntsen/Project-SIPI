@@ -1,78 +1,67 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from motor.motor_asyncio import AsyncIOMotorClient
-from neo4j import GraphDatabase
-import asyncio
+from database import conn
 
-# Configuración de la base de datos MongoDB
-MONGO_DETAILS = "mongodb://localhost:27017"
-client = AsyncIOMotorClient(MONGO_DETAILS)
-database = client.mydatabase
-collection = database.items
-
-# Configuración de la base de datos Neo4j
-NEO4J_DETAILS = "bolt://localhost:7687"
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = "password"
-driver = GraphDatabase.driver(NEO4J_DETAILS, auth=(NEO4J_USER, NEO4J_PASSWORD))
-
-# Definir la aplicación FastAPI
 app = FastAPI()
 
-# Modelos de Pydantic para validación de datos
-class Item(BaseModel):
-    name: str
-    description: str = None
-    price: float
-    tax: float = None
+# Modelos Pydantic
+class Usuario(BaseModel):
+    nombre: str
+    email: str
+    password: str
 
-# Rutas para la base de datos MongoDB
-@app.post("/mongo/items/")
-async def create_item_mongo(item: Item):
-    item_dict = item.dict()
-    result = await collection.insert_one(item_dict)
-    if result.inserted_id:
-        item_dict["_id"] = str(result.inserted_id)
-        return item_dict
-    raise HTTPException(status_code=500, detail="Item not created")
+class Comentario(BaseModel):
+    usuario_id: str
+    texto: str
 
-@app.get("/mongo/items/{item_id}")
-async def read_item_mongo(item_id: str):
-    item = await collection.find_one({"_id": item_id})
-    if item:
-        item["_id"] = str(item["_id"])
-        return item
-    raise HTTPException(status_code=404, detail="Item not found")
+# Endpoints de Usuarios
+@app.post("/usuarios/registro")
+async def registrar_usuario(usuario: Usuario):
+    query = """
+    CREATE (u:Usuario {nombre: $nombre, email: $email, password: $password})
+    RETURN u
+    """
+    try:
+        result = conn.query(query, nombre=usuario.nombre, email=usuario.email, password=usuario.password)
+        return {"usuario": result[0]["u"]}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
-# Rutas para la base de datos Neo4j
-@app.post("/neo4j/items/")
-async def create_item_neo4j(item: Item):
-    item_dict = item.dict()
-    query = (
-        "CREATE (i:Item {name: $name, description: $description, price: $price, tax: $tax}) "
-        "RETURN id(i) as id"
-    )
-    with driver.session() as session:
-        result = session.run(query, item_dict)
-        record = result.single()
-        if record:
-            item_dict["id"] = record["id"]
-            return item_dict
-    raise HTTPException(status_code=500, detail="Item not created")
+@app.post("/usuarios/login")
+async def login_usuario(email: str, password: str):
+    query = """
+    MATCH (u:Usuario {email: $email, password: $password})
+    RETURN u
+    """
+    result = conn.query(query, email=email, password=password)
+    if not result:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado o contraseña incorrecta")
+    return {"usuario": result[0]["u"]}
 
-@app.get("/neo4j/items/{item_id}")
-async def read_item_neo4j(item_id: int):
-    query = "MATCH (i:Item) WHERE id(i) = $id RETURN i"
-    with driver.session() as session:
-        result = session.run(query, id=item_id)
-        record = result.single()
-        if record:
-            item = record["i"]
-            return dict(item)
-    raise HTTPException(status_code=404, detail="Item not found")
+@app.get("/usuarios/{id}")
+async def obtener_perfil(id: str):
+    query = """
+    MATCH (u:Usuario) WHERE ID(u) = $id RETURN u
+    """
+    result = conn.query(query, id=int(id))
+    if not result:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+    return {"usuario": result[0]["u"]}
 
-# Cerrar conexiones de base de datos al apagar la aplicación
-@app.on_event("shutdown")
-async def shutdown_event():
-    client.close()
-    driver.close()
+# Endpoints de Comentarios
+@app.post("/comentarios")
+async def crear_comentario(comentario: Comentario):
+    query = """
+    MATCH (u:Usuario) WHERE ID(u) = $usuario_id
+    CREATE (c:Comentario {texto: $texto})-[:HECHO_POR]->(u)
+    RETURN c
+    """
+    try:
+        result = conn.query(query, usuario_id=int(comentario.usuario_id), texto=comentario.texto)
+        return {"comentario": result[0]["c"]}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
