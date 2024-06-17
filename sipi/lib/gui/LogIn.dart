@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-
-
+import '../aplicacion/controlador_usuario.dart';
 
 class Login extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final ControladorUsuario controladorUsuario = ControladorUsuario();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +19,7 @@ class Login extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 labelStyle: TextStyle(color: Colors.white),
@@ -25,6 +30,7 @@ class Login extends StatelessWidget {
             ),
             SizedBox(height: 10),
             TextFormField(
+              controller: passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
                 labelStyle: TextStyle(color: Colors.white),
@@ -38,8 +44,23 @@ class Login extends StatelessWidget {
             ElevatedButton(
               child: Text('Login'),
               onPressed: () {
-                
-                Navigator.pushReplacementNamed(context, "/home");
+                String email = emailController.text;
+                String password = passwordController.text;
+
+                // Validar las credenciales utilizando el controlador de usuario
+                bool credencialesValidas = controladorUsuario.validarCredenciales(email, password);
+
+                if (credencialesValidas) {
+                  // Navegar a la pantalla de home si las credenciales son válidas
+                  Navigator.pushReplacementNamed(context, "/home");
+                } else {
+                  // Mostrar algún mensaje de error o feedback al usuario
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Credenciales inválidas. Por favor, intenta de nuevo.'),
+                    ),
+                  );
+                }
               },
             ),
             SizedBox(height: 10),
@@ -55,3 +76,5 @@ class Login extends StatelessWidget {
     );
   }
 }
+
+
