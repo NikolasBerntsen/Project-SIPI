@@ -43,12 +43,12 @@ class Login extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               child: Text('Login'),
-              onPressed: () {
+              onPressed: () async {
                 String email = emailController.text;
                 String password = passwordController.text;
 
                 // Validar las credenciales utilizando el controlador de usuario
-                bool credencialesValidas = controladorUsuario.validarCredenciales(email, password);
+                bool credencialesValidas = await controladorUsuario.validarCredenciales(email, password);
 
                 if (credencialesValidas) {
                   // Navegar a la pantalla de home si las credenciales son válidas
@@ -76,5 +76,6 @@ class Login extends StatelessWidget {
     );
   }
 }
+
 
 

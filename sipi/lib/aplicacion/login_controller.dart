@@ -1,7 +1,12 @@
+import 'package:sipi/dominio/usuario.dart';
+
 abstract class LoginController {
-  bool validarCredenciales(String username, String password);
+  Future<bool> validarCredenciales(String username, String password);
   void login();
   void logout();
-  void crearCuenta();
+  Future<void> crearCuenta(Usuario usuario);
 }
+
+  
+  
 

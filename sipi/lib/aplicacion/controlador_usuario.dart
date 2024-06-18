@@ -6,21 +6,10 @@ class ControladorUsuario {
   final LoginAPI loginAPI = LoginAPI();
 
   // Método para validar credenciales (login)
-  bool validarCredenciales(String correoElectronico, String contrasena) {
-    bool credencialesValidas = loginAPI.validarCredenciales(correoElectronico, contrasena);
+  Future<bool> validarCredenciales(String correoElectronico, String contrasena) async {
+    bool credencialesValidas = await loginAPI.validarCredenciales(correoElectronico, contrasena);
     if (credencialesValidas) {
-      usuarioAutenticado = Usuario(
-        idUsuario: 1, // Asignar un idUsuario ficticio para este ejemplo
-        correoElectronico: correoElectronico,
-        contrasena: contrasena,
-        nombreUsuario: 'Nombre de Usuario', // Asignar un nombre ficticio para este ejemplo
-        desarrollador: false,
-        moderador: false,
-        critico: false,
-        notificaciones: [],
-        seguidores: [],
-        empresaCritica: '',
-      );
+      usuarioAutenticado = await loginAPI.obtenerUsuario(correoElectronico, contrasena);
       return true;
     } else {
       return false;
@@ -28,12 +17,13 @@ class ControladorUsuario {
   }
 
   // Método para registrar usuario
-  void registrarUsuario(Usuario usuario) {
-    // Simula la creación de la cuenta
-    loginAPI.crearCuenta();
+  Future<void> registrarUsuario(Usuario usuario) async {
+    await loginAPI.crearCuenta(usuario);
     usuarioAutenticado = usuario;
   }
 }
+
+
 
 
 
