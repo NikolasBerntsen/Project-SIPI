@@ -36,35 +36,5 @@ class Usuario {
   void eliminarTag(String tag) {
     notificaciones.remove(tag);
   }
-
-  factory Usuario.fromJson(Map<String, dynamic> json) {
-    return Usuario(
-      idUsuario: json['idUsuario'],
-      correoElectronico: json['correoElectronico'],
-      contrasena: json['contrasena'],
-      nombreUsuario: json['nombreUsuario'],
-      desarrollador: json['desarrollador'],
-      moderador: json['moderador'],
-      critico: json['critico'],
-      notificaciones: List<String>.from(json['notificaciones']),
-      seguidores: List<String>.from(json['seguidores']),
-      empresaCritica: json['empresaCritica'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'idUsuario': idUsuario,
-      'correoElectronico': correoElectronico,
-      'contrasena': contrasena,
-      'nombreUsuario': nombreUsuario,
-      'desarrollador': desarrollador,
-      'moderador': moderador,
-      'critico': critico,
-      'notificaciones': notificaciones,
-      'seguidores': seguidores,
-      'empresaCritica': empresaCritica,
-    };
-  }
-}
+} //elimina el tag de la lista de notificaciones si esta presente
 
