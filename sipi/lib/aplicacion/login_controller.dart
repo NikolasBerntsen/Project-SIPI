@@ -1,5 +1,7 @@
+import 'package:sipi/dominio/usuario.dart';
+
 abstract class LoginController {
-  bool validarCredenciales(String username, String password);
+  Usuario? validarCredenciales(String username, String password);
   void login();
   void logout();
   void crearCuenta();

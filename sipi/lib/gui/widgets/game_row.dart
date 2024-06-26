@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sipi/dominio/juego.dart';
 import 'package:sipi/gui/widgets/game_card.dart';
-import 'package:sipi/gui/widgets/game_item.dart';
 
 class GameRow extends StatelessWidget {
-  final List<GameItem> games;
+  final List<Juego> games;
 
   const GameRow({super.key, required this.games});
 

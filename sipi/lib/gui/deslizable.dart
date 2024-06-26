@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sipi/aplicacion/controlador_usuario.dart';
 
 class Delizable extends StatelessWidget {
   const Delizable({super.key});
@@ -11,10 +12,13 @@ class Delizable extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("Pedroperez1990"),
+            accountName: Text(ControladorUsuario.instance.usuarioAutenticado!.nombreUsuario),
             accountEmail: null,
             currentAccountPicture: CircleAvatar(
-              backgroundImage: NetworkImage('https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'), // Ruta a la imagen del avatar
+              backgroundImage: NetworkImage(
+                ControladorUsuario.instance.usuarioAutenticado!.imagen ?? 
+                  'https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'
+              ), // Ruta a la imagen del avatar
             ),
             decoration: BoxDecoration(
               color: Colors.blueGrey,
@@ -40,7 +44,7 @@ class Delizable extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, "/perfil");
             },
-          ),
+          ),/*
           DrawerItem(
             icon: Icons.favorite,
             text: 'Favoritos',
@@ -68,7 +72,7 @@ class Delizable extends StatelessWidget {
             onTap: () {
               //Navigator.pushReplacementNamed(context, "/configuracion");
             },
-          ),
+          ),*/
           DrawerItem(
             icon: Icons.tag_faces_sharp,
             text: 'Suscripciones',
@@ -80,7 +84,8 @@ class Delizable extends StatelessWidget {
             icon: Icons.logout,
             text: 'Cerrar sesión',
             onTap: () {
-              //Navigator.pushReplacementNamed(context, "/Login");
+              ControladorUsuario.instance.usuarioAutenticado = null;
+              Navigator.pushReplacementNamed(context, "/login");
             },
           ),
           DrawerItem(

@@ -9,6 +9,7 @@ class Usuario {
   List<String> notificaciones;
   List<String> seguidores;
   String empresaCritica;
+  String? imagen;
 
   Usuario({
     required this.idUsuario,
@@ -21,6 +22,7 @@ class Usuario {
     required this.notificaciones,
     required this.seguidores,
     required this.empresaCritica,
+    required this.imagen,
   });
 
   bool esDesarrollador() => desarrollador;

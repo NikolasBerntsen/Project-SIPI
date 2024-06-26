@@ -1,7 +1,10 @@
 // lib/gui/search_page.dart
 
 import 'package:flutter/material.dart';
+import 'package:sipi/dominio/juego.dart';
 import 'package:sipi/gui/deslizable.dart';
+import 'package:sipi/gui/detalles_juego.dart';
+import 'package:sipi/infraestructura/consultar_api.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -10,6 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   TextEditingController _searchController = TextEditingController();
+  List<Juego> resultados = [];
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +30,31 @@ class _SearchPageState extends State<SearchPage> {
           ),
           style: TextStyle(color: Colors.white),
           onChanged: (query) {
-        
+            setState(() {
+              resultados = ConsultarAPI.buscar(_searchController.text);
+            });
           },
         ),
       ),
       body: Container(
         color: Colors.blueGrey[900],
         child: ListView.builder(
-          itemCount: 10, 
+          itemCount: resultados.length,
           itemBuilder: (context, index) {
             return ListTile(
               title: Text(
-                'Resultado $index',
+                "${resultados[index].nombreJuego}",
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
-               
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      child: DetallesJuego(game: resultados[index]),
+                    );
+                  },
+                );
               },
             );
           },
@@ -50,5 +63,3 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
-
-

@@ -1,28 +1,27 @@
+import 'package:sipi/dominio/repositorio_usuarios.dart';
+import 'package:sipi/dominio/usuario.dart';
+
 import '../aplicacion/login_controller.dart';
 
 class LoginAPI implements LoginController {
   @override
-  bool validarCredenciales(String username, String password) {
-    // Implementación de validarCredenciales
-    return username == 'usuario' && password == 'contraseña'; // Ejemplo simple
+  Usuario? validarCredenciales(String username, String password) {
+    UsuarioRepository bd = UsuarioRepository();
+    return bd.getUsuario(username,password);
+    }
+
+  @override
+  void crearCuenta() {
+    // TODO: implement crearCuenta
   }
 
   @override
   void login() {
-    // Implementación de login
-    print('Sesión iniciada');
+    // TODO: implement login
   }
 
   @override
   void logout() {
-    // Implementación de logout
-    print('Sesión cerrada');
-  }
-
-  @override
-  void crearCuenta() {
-    // Implementación de crearCuenta
-    print('Cuenta creada');
+    // TODO: implement logout
   }
 }
-

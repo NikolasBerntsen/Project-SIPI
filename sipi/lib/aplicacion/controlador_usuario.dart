@@ -5,26 +5,20 @@ class ControladorUsuario {
   Usuario? usuarioAutenticado;
   final LoginAPI loginAPI = LoginAPI();
 
+  // Crear una instancia estática privada
+  static final ControladorUsuario _instance = ControladorUsuario._internal();
+
+  // Proveer un método público estático para acceder a la instancia única
+  static ControladorUsuario get instance => _instance;
+
+  // Constructor privado para evitar la creación de instancias desde fuera
+  ControladorUsuario._internal();
+
   // Método para validar credenciales (login)
-  bool validarCredenciales(String correoElectronico, String contrasena) {
-    bool credencialesValidas = loginAPI.validarCredenciales(correoElectronico, contrasena);
-    if (credencialesValidas) {
-      usuarioAutenticado = Usuario(
-        idUsuario: 1, // Asignar un idUsuario ficticio para este ejemplo
-        correoElectronico: correoElectronico,
-        contrasena: contrasena,
-        nombreUsuario: 'Nombre de Usuario', // Asignar un nombre ficticio para este ejemplo
-        desarrollador: false,
-        moderador: false,
-        critico: false,
-        notificaciones: [],
-        seguidores: [],
-        empresaCritica: '',
-      );
-      return true;
-    } else {
-      return false;
-    }
+  bool validarCredenciales(String usuario, String contrasena) {
+    usuarioAutenticado =
+        loginAPI.validarCredenciales(usuario, contrasena);
+    return usuarioAutenticado != null;
   }
 
   // Método para registrar usuario
@@ -34,7 +28,3 @@ class ControladorUsuario {
     usuarioAutenticado = usuario;
   }
 }
-
-
-
-
